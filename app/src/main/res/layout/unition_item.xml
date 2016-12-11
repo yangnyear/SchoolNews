@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/unition_name"
+            android:text="计科院学生会"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:scaleType="centerInside"
+        android:id="@+id/unition_image"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
+
+
+</LinearLayout>

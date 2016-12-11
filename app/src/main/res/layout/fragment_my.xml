@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/ctn_my"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff0328"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:text="我的"/>
+    <LinearLayout
+        android:clickable="true"
+        android:id="@+id/ll_login"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:scaleType="centerCrop"
+            android:id="@+id/image_mylogo"
+            android:src="@drawable/ic_user"
+            android:layout_width="64dp"
+            android:layout_height="64dp" />
+        <TextView
+            android:id="@+id/text_username"
+            android:text="点击登录账号"
+            android:textColor="#747474"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+<ListView
+    android:id="@+id/list_user"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+</ListView>
+</LinearLayout>
