@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:scaleType="centerCrop"
+            android:id="@+id/unition_image"
+            android:layout_marginTop="6dp"
+            app:placeholderImage="@drawable/image_glass"
+            android:layout_width="match_parent"
+            android:layout_height="188dp" />
         <TextView
             android:id="@+id/unition_name"
             android:text="计科院学生会"
-            android:textSize="20sp"
+            android:textStyle="italic"
+            android:textSize="18sp"
+            android:layout_marginLeft="3dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:textColor="#fff"
             android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="48dp" />
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:scaleType="centerInside"
-        android:id="@+id/unition_image"
-        android:layout_width="match_parent"
-        android:layout_height="180dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
 
 
 </LinearLayout>

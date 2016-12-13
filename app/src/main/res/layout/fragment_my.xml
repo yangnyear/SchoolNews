@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
     <Button
         android:id="@+id/ctn_my"
@@ -22,21 +23,39 @@
         <com.facebook.drawee.view.SimpleDraweeView
             android:scaleType="centerCrop"
             android:id="@+id/image_mylogo"
-            android:src="@drawable/ic_user"
             android:layout_width="64dp"
+            app:placeholderImage="@drawable/ic_user"
             android:layout_height="64dp" />
-        <TextView
-            android:id="@+id/text_username"
-            android:text="点击登录账号"
-            android:textColor="#747474"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_username"
+                android:text="登录"
+                android:textStyle="italic"
+                android:textColor="#747474"
+                android:layout_gravity="top"
+                android:layout_marginLeft="10dp"
+                android:textSize="24sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/text_user_xiao"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textColor="#747474"
+                android:textSize="10sp"
+                android:text=""/>
+        </LinearLayout>
+
     </LinearLayout>
 <ListView
     android:id="@+id/list_user"
+    android:background="#FFF"
+    android:layout_marginTop="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 

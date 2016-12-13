@@ -13,6 +13,7 @@
         android:layout_height="48dp"/>
     <ListView
         android:id="@+id/head_news"
+        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ListView>

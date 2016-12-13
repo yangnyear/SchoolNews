@@ -1,26 +1,31 @@
 package com.swpuiot.schoolnews.emtity;
 
+import java.io.Serializable;
+
 /**
  * Created by 羊荣毅_L on 2016/12/6.
  */
-public class UserResponseEmpty {
+public class UserResponseEmpty implements Serializable {
+    private static final long serialVersionUID = 1L;
+
 
     /**
      * message : success
      * code : 1
-     * date : {"id":2,"userId":201431060299,"name":"羊荣毅","password":"123","major":"物联网工程","grade":"2014级","phone":12345678912,"inTime":"2014-09-01","putTime":"2018-06-01","facultyId":5}
+     * date : {"id":1,"userId":201431060298,"name":"赵禾才","setLogoSrc":"http://www.bug666.cn:8080/Images/201431060298.png","password":"123","major":"物联网工程","grade":"2014级","phone":15680659519,"inTime":"2014-09-01","putTime":"2018-06-01","facultyId":5}
      */
 
     private String message;
     private int code;
     /**
-     * id : 2
-     * userId : 201431060299
-     * name : 羊荣毅
+     * id : 1
+     * userId : 201431060298
+     * name : 赵禾才
+     * setLogoSrc : http://www.bug666.cn:8080/Images/201431060298.png
      * password : 123
      * major : 物联网工程
      * grade : 2014级
-     * phone : 12345678912
+     * phone : 15680659519
      * inTime : 2014-09-01
      * putTime : 2018-06-01
      * facultyId : 5
@@ -52,10 +57,12 @@ public class UserResponseEmpty {
         this.date = date;
     }
 
-    public static class DateBean {
+    public static class DateBean implements Serializable{
+        private static final long serialVersionUID = 1L;
         private int id;
         private long userId;
         private String name;
+        private String setLogoSrc;
         private String password;
         private String major;
         private String grade;
@@ -86,6 +93,14 @@ public class UserResponseEmpty {
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public String getSetLogoSrc() {
+            return setLogoSrc;
+        }
+
+        public void setSetLogoSrc(String setLogoSrc) {
+            this.setLogoSrc = setLogoSrc;
         }
 
         public String getPassword() {
