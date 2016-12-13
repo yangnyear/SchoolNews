@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:padding="8dp"
+    android:id="@+id/text_openphgm"
+    android:textSize="20dp"
+   android:gravity="center"
+    android:text="从相册选择"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+    <Button
+        android:padding="12dp"
+        android:background="#b9b4b4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+<TextView
+    android:padding="8dp"
+    android:id="@+id/text_fromphhome"
+    android:textSize="20dp"
+    android:text="拍照"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+    <Button
+        android:padding="12dp"
+        android:background="#b9b4b4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+<TextView
+    android:padding="8dp"
+    android:id="@+id/text_cheakimage"
+    android:textSize="20dp"
+    android:text="查看大图"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+    <Button
+        android:padding="12dp"
+        android:background="#b9b4b4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+</LinearLayout>

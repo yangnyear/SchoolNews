@@ -1,12 +1,312 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.swpuiot.schoolnews.view.MyDataActivity">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/bt_onew"
+            android:textColor="#fff"
+            android:background="#ff0328"
+            android:text="个人信息"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+        <TextView
+            android:id="@+id/text_replace"
+            android:textSize="20sp"
+            android:layout_marginTop="14dp"
+            android:layout_gravity="end"
+            android:textColor="#fff"
+            android:text="编辑"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/im_onewback"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/image_back"
+            android:layout_width="30dp"
+            android:layout_height="14dp" />
+    </FrameLayout>
+    <FrameLayout
+        android:background="#ff0328"
+        android:layout_width="match_parent"
+        android:layout_height="168dp">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image_userlogo"
+            android:src="@drawable/ic_user"
+            app:roundAsCircle="true"
+            android:layout_gravity="center"
+            app:placeholderImage="@drawable/ic_user"
+            android:scaleType="center"
+            android:layout_width="match_parent"
+            android:layout_height="68dp" />
+        <TextView
+            android:id="@+id/text_onew_name"
+            android:textColor="#fff"
+            android:layout_gravity="center_horizontal"
+            android:textSize="12sp"
+            android:layout_marginTop="130dp"
+            android:text="Android攻城狮"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ScrollView>
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="姓名"
+            android:singleLine="true"
+            android:textColor="#807f7f"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txt_aname"
+            android:text="羊荣毅"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+    <Button
+        android:background="#b6b1b1"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="学号"
+            android:singleLine="true"
+            android:textColor="#807f7f"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txt_astuid"
+            android:text="123456789025"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <Button
+        android:background="#b6b1b1"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="专业"
+            android:singleLine="true"
+            android:textColor="#807f7f"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txt_amajor"
+            android:text="物联网工程"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <Button
+        android:background="#b6b1b1"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="年级"
+            android:singleLine="true"
+            android:textColor="#807f7f"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txt_agrade"
+            android:text="本科三年级"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <Button
+        android:background="#b6b1b1"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="手机"
+            android:singleLine="true"
+            android:textColor="#807f7f"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txt_aphnoe"
+            android:text="12345678977"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <Button
+        android:background="#b6b1b1"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="入学时间"
+            android:textColor="#807f7f"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txt_aintime"
+            android:text="2014-09-01"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:textSize="18sp"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <Button
+        android:background="#b6b1b1"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="毕业时间"
+            android:singleLine="true"
+            android:textColor="#807f7f"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txt_aouttime"
+            android:text="2018-06-01"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <Button
+        android:background="#b6b1b1"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+
+
+</LinearLayout>

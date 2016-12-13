@@ -23,6 +23,7 @@
         <com.facebook.drawee.view.SimpleDraweeView
             android:scaleType="centerCrop"
             android:id="@+id/image_mylogo"
+            app:roundAsCircle="true"
             android:layout_width="64dp"
             app:placeholderImage="@drawable/ic_user"
             android:layout_height="64dp" />

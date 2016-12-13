@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
     private  ActionFragment actionFragment;
     private  StudentsUnitionFragment studentsUnitionFragment;
     private  MyFragment myFragment;
-    public UserResponseEmpty.DateBean name;
+    public UserResponseEmpty.DateBean userDataBean;
     public List<HradMessages> mlist = new ArrayList<HradMessages>();
     public List<HradMessages> mylist = new ArrayList<HradMessages>();
 
@@ -111,20 +111,20 @@ public class MainActivity extends ActionBarActivity {
         switch (requestCode){
             case 1:
             if (resultCode==RESULT_OK){
-                name= (UserResponseEmpty.DateBean) data.getSerializableExtra("DataBean_data");
+                userDataBean= (UserResponseEmpty.DateBean) data.getSerializableExtra("DataBean_data");
                 TextView textView= (TextView)myFragment.getView().findViewById(R.id.text_username);
                 TextView text_xiao=(TextView)myFragment.getView().findViewById(R.id.text_user_xiao);
-                textView.setText(name.getName());
-                text_xiao.setText(name.getMajor());
+                textView.setText(userDataBean.getName());
+                text_xiao.setText(userDataBean.getMajor());
                 com.facebook.drawee.view.SimpleDraweeView sdv = (SimpleDraweeView)myFragment.getView().findViewById(R.id.image_mylogo);
-                Uri uri = Uri.parse("http://114.215.144.204:9090/avatar/yangrongyi");
+                Uri uri = Uri.parse(userDataBean.getSetLogoSrc());
                 sdv.setImageURI(uri);
             }
         }
     }
     public void toMyDatact(){
-        Intent intent=new Intent(this,MyDataActivity.class);
-        intent.putExtra("user_imfo", name);
-        startActivityForResult(intent, 1);
+        Intent intent=new Intent(MainActivity.this,MyDataActivity.class);
+        intent.putExtra("user_imfo", userDataBean);
+        startActivity(intent);
     }
 }
