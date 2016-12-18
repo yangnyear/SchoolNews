@@ -1,23 +1,45 @@
 package com.swpuiot.schoolnews.view;
 
 import android.app.AlertDialog;
+import android.content.ContentUris;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.swpuiot.schoolnews.R;
 import com.swpuiot.schoolnews.emtity.UserResponseEmpty;
 
+import org.apache.http.Header;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class MyDataActivity extends ActionBarActivity {
+    public static  final int TAKE_PHOTO=1;
+    public static  final int GCOP_PHOTO=2;
+    public static  final int CHOOSE_PHOTO=3;
+
     private ImageView imOfBack;
     private com.facebook.drawee.view.SimpleDraweeView imOfLogo;
+    private UserResponseEmpty.DateBean aUser;
     private TextView txtOfReplace;
     private  TextView textOfMoto;
     private TextView txtOfName;
@@ -27,8 +49,10 @@ public class MyDataActivity extends ActionBarActivity {
     private TextView txtOfPhhno;
     private TextView txtOfInTime;
     private TextView txtOfOutTime;
+    private Uri imageuri;
+    private AlertDialog dialog;
 
-//    public UserResponseEmpty.DateBean aUser;
+    //    public UserResponseEmpty.DateBean aUser;
 
     public MyDataActivity() {
     }
@@ -52,9 +76,9 @@ public class MyDataActivity extends ActionBarActivity {
         txtOfInTime= (TextView) findViewById(R.id.txt_aintime);
         txtOfOutTime= (TextView) findViewById(R.id.txt_aouttime);
 
-        UserResponseEmpty.DateBean aUser= (UserResponseEmpty.DateBean) getIntent().getSerializableExtra("user_imfo");
+        aUser= (UserResponseEmpty.DateBean) getIntent().getSerializableExtra("user_imfo");
         txtOfName.setText(aUser.getName());
-        txtOfStudentid.setText(aUser.getUserId()+"");
+        txtOfStudentid.setText(aUser.getUserId() + "");
         txtOfMajor.setText(aUser.getMajor());
         txtOfGrade.setText(aUser.getGrade());
         txtOfPhhno.setText(aUser.getPutTime());
@@ -72,7 +96,7 @@ public class MyDataActivity extends ActionBarActivity {
                 View view = inflater.inflate(R.layout.chose_item, null);
 
 
-                final AlertDialog dialog = new AlertDialog
+                dialog = new AlertDialog
                         .Builder(MyDataActivity.this)
                         .setTitle("更换头像")
                         .setView(view)
@@ -83,20 +107,24 @@ public class MyDataActivity extends ActionBarActivity {
                             }
                         })
                         .show();
-                TextView txtOfPhHome= (TextView) findViewById(R.id.text_openphgm);
-                TextView txtOfPhotoGreamer= (TextView) findViewById(R.id.text_fromphhome);
-                TextView txtOfCheak= (TextView) findViewById(R.id.text_cheakimage);
+
+                TextView txtOfPhHome= (TextView) view.findViewById(R.id.text_openphgm);
+                TextView txtOfPhotoGreamer= (TextView) view.findViewById(R.id.text_fromphhome);
+                TextView txtOfCheak= (TextView) view.findViewById(R.id.text_cheakimage);
 
                 txtOfPhHome.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // TODO: 2016/12/13  从相册选择照片
+                       openPhotoHome(CHOOSE_PHOTO);
+
                     }
                 });
                 txtOfPhotoGreamer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // TODO: 2016/12/13 打来相机
+                       openCamera(TAKE_PHOTO);
+
+
                     }
                 });
                 txtOfCheak.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +135,6 @@ public class MyDataActivity extends ActionBarActivity {
                 });
             }
         });
-
         txtOfReplace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,4 +143,169 @@ public class MyDataActivity extends ActionBarActivity {
         });
 
     }
+    public void openPhotoHome(int a){
+        File outPutImage=new File(Environment.getExternalStorageDirectory(),"out_put.jpg");
+            try {
+                if (outPutImage.exists()){
+                outPutImage.delete();
+                 }
+                outPutImage.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+               }
+        imageuri=Uri.fromFile(outPutImage);
+        Intent intent=new Intent("android.intent.action.GET_CONTENT");
+        intent.setType("image/*");
+        startActivityForResult(intent, a);
+    }
+    public void openCamera(int a) {
+        File outputimage = new File(Environment.getExternalStorageDirectory(), "tempimage.jpg");
+
+            try {
+                if (outputimage.exists()) {
+                outputimage.delete();
+            }
+                outputimage.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            imageuri=Uri.fromFile(outputimage);
+            Intent intent=new Intent("android.media.action.IMAGE_CAPTURE");
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,imageuri);
+        startActivityForResult(intent, a);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String imagePath;
+        switch (requestCode){
+            case TAKE_PHOTO:
+                if (resultCode==RESULT_OK){
+                    Intent intent=new Intent("com.android.camera.action.CROP");
+                    intent.setDataAndType(imageuri, "image/*");
+                    intent.putExtra("scale", true);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT,imageuri);
+                    startActivityForResult(intent,GCOP_PHOTO);
+                }
+                break;
+            case GCOP_PHOTO:
+                if (resultCode==RESULT_OK){
+                        if(dialog!=null && dialog.isShowing())dialog.dismiss();
+                    imOfLogo.setImageURI(imageuri);
+
+                }
+                break;
+            case CHOOSE_PHOTO:
+                if (resultCode==RESULT_OK){
+                    if (Build.VERSION.SDK_INT>=19){
+                        imagePath=handleImageOnkitkat(data);
+                        resettingUserLogo(imagePath);
+
+                    }else{
+                        imagePath= handleimageBefokitkat(data);
+                        resettingUserLogo(imagePath);
+                    }
+                }
+            default:
+                break;
+        }
+    }
+    private String handleImageOnkitkat(Intent data){
+        String imagepath=null;
+        Uri uri=data.getData();
+        if (DocumentsContract.isDocumentUri(this,uri)){
+            String docid=DocumentsContract.getDocumentId(uri);
+            if ("com.android.providers.media.documents".equals(uri.getAuthority())){
+                String id=docid.split(":")[1];
+                String selection=MediaStore.Images.Media._ID+"="+id;
+                imagepath=getimagepath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,selection);
+            }else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
+                Uri contentUri = ContentUris.withAppendedId(uri.parse("content://downloads/public_downloads"),
+                        Long.valueOf(docid));
+                imagepath = getimagepath(contentUri, null);
+            }
+        }
+        else if ("content".equalsIgnoreCase(uri.getScheme())) {
+                imagepath=getimagepath(uri,null);
+            }
+        displayimage(imagepath);
+        return imagepath;
+    }
+    private String  handleimageBefokitkat(Intent data){
+        Uri uri=data.getData();
+        String imagepath= getimagepath(uri, null);
+        displayimage(imagepath);
+        return imagepath;
+    }
+
+    private String getimagepath(Uri uri,String selection){
+        String path=null;
+        Cursor cursor=getContentResolver().query(uri, null, selection,null,null);
+        if (cursor!=null){
+            if (cursor.moveToFirst()){
+                path=cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            }
+           cursor.close();
+        }
+    return path;
+    }
+    private void displayimage(String imagepath){
+        if (imagepath!=null){
+            if(dialog!=null && dialog.isShowing())dialog.dismiss();
+            String uri = "file://"+imagepath;
+            imOfLogo.setImageURI(Uri.parse(uri));
+        }else{
+            Toast.makeText(this,"failed",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    public void resettingUserLogo(String imagePath){
+        File imageFile=new File(imagePath);
+        RequestParams replaceImage=new RequestParams();
+        AsyncHttpClient replace=new AsyncHttpClient();
+        replaceImage.put("userId",aUser.getUserId());
+        try {
+            replaceImage.put("file", imageFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        replace.post("http://www.bug666.cn:8090/upload", replaceImage, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                Toast.makeText(MyDataActivity.this, "头像上传成功", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+                Toast.makeText(MyDataActivity.this, "出问题啦，请检查网络", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

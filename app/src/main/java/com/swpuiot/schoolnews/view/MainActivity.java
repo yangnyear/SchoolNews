@@ -71,6 +71,9 @@ public class MainActivity extends ActionBarActivity {
                                 masResponseEmpty.getContent().get(j).getContent()));
                     }
                 }
+                if(headImageFragment!=null){
+                    headImageFragment.notifyDataSetChanged();
+                }
 
             }
 

@@ -43,9 +43,9 @@
             android:id="@+id/image_userlogo"
             android:src="@drawable/ic_user"
             app:roundAsCircle="true"
+            app:actualImageScaleType="centerInside"
             android:layout_gravity="center"
             app:placeholderImage="@drawable/ic_user"
-            android:scaleType="center"
             android:layout_width="match_parent"
             android:layout_height="68dp" />
         <TextView
