@@ -20,7 +20,8 @@ import java.util.List;
 public class ActionFragment extends Fragment {
     private HeadMessageAdapterr headMessageAdapterr;
     private ListView listView;
-    List<HradMessages> mlist;
+   public List<HradMessages> mlist;
+    private View view;
 
     public void setMlist(List<HradMessages> mlist) {
         this.mlist = mlist;
@@ -28,14 +29,24 @@ public class ActionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_action,container,false);
+        if (view==null){
+            view=inflater.inflate(R.layout.fragment_action,container,false);
+        }
         headMessageAdapterr = new HeadMessageAdapterr(getActivity(), mlist);
         listView= (ListView) view.findViewById(R.id.list_action);
         listView.setAdapter(headMessageAdapterr);
         if(headMessageAdapterr!=null)
             headMessageAdapterr.notifyDataSetChanged();
-
-
         return view;
+    }
+    public void notifyDataSetChanged() {
+        headMessageAdapterr.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ((ViewGroup) view.getParent()).removeView(view);
+
     }
 }

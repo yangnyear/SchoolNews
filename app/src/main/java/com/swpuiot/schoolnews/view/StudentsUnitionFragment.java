@@ -16,10 +16,12 @@ import com.swpuiot.schoolnews.adapter.StudentunitionAdapter;
  */
 public class StudentsUnitionFragment extends Fragment {
     private ListView listView;
+    private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.fragment_students_unition,container,false);
-
+        if (view==null){
+            view = inflater.inflate(R.layout.fragment_students_unition,container,false);
+        }
         listView=(ListView) view.findViewById(R.id.list_studentsunition);
         listView.setAdapter(new StudentunitionAdapter(getActivity()));
 
@@ -31,9 +33,11 @@ public class StudentsUnitionFragment extends Fragment {
 
             }
         });
-
-
-
         return view;
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ((ViewGroup) view.getParent()).removeView(view);
     }
 }

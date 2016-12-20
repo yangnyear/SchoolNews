@@ -33,15 +33,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class MyDataActivity extends ActionBarActivity {
-    public static  final int TAKE_PHOTO=1;
-    public static  final int GCOP_PHOTO=2;
-    public static  final int CHOOSE_PHOTO=3;
+    public static final int TAKE_PHOTO = 1;
+    public static final int GCOP_PHOTO = 2;
+    public static final int CHOOSE_PHOTO = 3;
 
     private ImageView imOfBack;
     private com.facebook.drawee.view.SimpleDraweeView imOfLogo;
     private UserResponseEmpty.DateBean aUser;
     private TextView txtOfReplace;
-    private  TextView textOfMoto;
+    private TextView textOfMoto;
     private TextView txtOfName;
     private TextView txtOfMajor;
     private TextView txtOfStudentid;
@@ -63,25 +63,25 @@ public class MyDataActivity extends ActionBarActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_my_data);
 
-        imOfBack= (ImageView) findViewById(R.id.im_onewback);
-        imOfLogo= (SimpleDraweeView) findViewById(R.id.image_userlogo);
-        txtOfReplace= (TextView) findViewById(R.id.text_replace);
-        textOfMoto= (TextView) findViewById(R.id.text_onew_name);
+        imOfBack = (ImageView) findViewById(R.id.im_onewback);
+        imOfLogo = (SimpleDraweeView) findViewById(R.id.image_userlogo);
+        txtOfReplace = (TextView) findViewById(R.id.text_replace);
+        textOfMoto = (TextView) findViewById(R.id.text_onew_name);
 
-        txtOfName= (TextView) findViewById(R.id.txt_aname);
-        txtOfStudentid= (TextView) findViewById(R.id.txt_astuid);
-        txtOfMajor= (TextView) findViewById(R.id.txt_amajor);
-        txtOfGrade= (TextView) findViewById(R.id.txt_agrade);
-        txtOfPhhno= (TextView) findViewById(R.id.txt_aphnoe);
-        txtOfInTime= (TextView) findViewById(R.id.txt_aintime);
-        txtOfOutTime= (TextView) findViewById(R.id.txt_aouttime);
+        txtOfName = (TextView) findViewById(R.id.txt_aname);
+        txtOfStudentid = (TextView) findViewById(R.id.txt_astuid);
+        txtOfMajor = (TextView) findViewById(R.id.txt_amajor);
+        txtOfGrade = (TextView) findViewById(R.id.txt_agrade);
+        txtOfPhhno = (TextView) findViewById(R.id.txt_aphnoe);
+        txtOfInTime = (TextView) findViewById(R.id.txt_aintime);
+        txtOfOutTime = (TextView) findViewById(R.id.txt_aouttime);
 
-        aUser= (UserResponseEmpty.DateBean) getIntent().getSerializableExtra("user_imfo");
+        aUser = (UserResponseEmpty.DateBean) getIntent().getSerializableExtra("user_imfo");
         txtOfName.setText(aUser.getName());
         txtOfStudentid.setText(aUser.getUserId() + "");
         txtOfMajor.setText(aUser.getMajor());
         txtOfGrade.setText(aUser.getGrade());
-        txtOfPhhno.setText(aUser.getPutTime());
+        txtOfPhhno.setText(aUser.getPhone() + "");
         txtOfInTime.setText(aUser.getInTime());
         txtOfOutTime.setText(aUser.getPutTime());
 
@@ -108,21 +108,21 @@ public class MyDataActivity extends ActionBarActivity {
                         })
                         .show();
 
-                TextView txtOfPhHome= (TextView) view.findViewById(R.id.text_openphgm);
-                TextView txtOfPhotoGreamer= (TextView) view.findViewById(R.id.text_fromphhome);
-                TextView txtOfCheak= (TextView) view.findViewById(R.id.text_cheakimage);
+                TextView txtOfPhHome = (TextView) view.findViewById(R.id.text_openphgm);
+                TextView txtOfPhotoGreamer = (TextView) view.findViewById(R.id.text_fromphhome);
+                TextView txtOfCheak = (TextView) view.findViewById(R.id.text_cheakimage);
 
                 txtOfPhHome.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       openPhotoHome(CHOOSE_PHOTO);
+                        openPhotoHome(CHOOSE_PHOTO);
 
                     }
                 });
                 txtOfPhotoGreamer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       openCamera(TAKE_PHOTO);
+                        openCamera(TAKE_PHOTO);
 
 
                     }
@@ -143,66 +143,68 @@ public class MyDataActivity extends ActionBarActivity {
         });
 
     }
-    public void openPhotoHome(int a){
-        File outPutImage=new File(Environment.getExternalStorageDirectory(),"out_put.jpg");
-            try {
-                if (outPutImage.exists()){
+
+    public void openPhotoHome(int a) {
+        File outPutImage = new File(Environment.getExternalStorageDirectory(), "out_put.jpg");
+        try {
+            if (outPutImage.exists()) {
                 outPutImage.delete();
-                 }
-                outPutImage.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-               }
-        imageuri=Uri.fromFile(outPutImage);
-        Intent intent=new Intent("android.intent.action.GET_CONTENT");
+            }
+            outPutImage.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        imageuri = Uri.fromFile(outPutImage);
+        Intent intent = new Intent("android.intent.action.GET_CONTENT");
         intent.setType("image/*");
         startActivityForResult(intent, a);
     }
+
     public void openCamera(int a) {
         File outputimage = new File(Environment.getExternalStorageDirectory(), "tempimage.jpg");
 
-            try {
-                if (outputimage.exists()) {
+        try {
+            if (outputimage.exists()) {
                 outputimage.delete();
             }
-                outputimage.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            imageuri=Uri.fromFile(outputimage);
-            Intent intent=new Intent("android.media.action.IMAGE_CAPTURE");
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,imageuri);
+            outputimage.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        imageuri = Uri.fromFile(outputimage);
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageuri);
         startActivityForResult(intent, a);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String imagePath;
-        switch (requestCode){
+        switch (requestCode) {
             case TAKE_PHOTO:
-                if (resultCode==RESULT_OK){
-                    Intent intent=new Intent("com.android.camera.action.CROP");
+                if (resultCode == RESULT_OK) {
+                    Intent intent = new Intent("com.android.camera.action.CROP");
                     intent.setDataAndType(imageuri, "image/*");
                     intent.putExtra("scale", true);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT,imageuri);
-                    startActivityForResult(intent,GCOP_PHOTO);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageuri);
+                    startActivityForResult(intent, GCOP_PHOTO);
                 }
                 break;
             case GCOP_PHOTO:
-                if (resultCode==RESULT_OK){
-                        if(dialog!=null && dialog.isShowing())dialog.dismiss();
+                if (resultCode == RESULT_OK) {
+                    if (dialog != null && dialog.isShowing()) dialog.dismiss();
                     imOfLogo.setImageURI(imageuri);
 
                 }
                 break;
             case CHOOSE_PHOTO:
-                if (resultCode==RESULT_OK){
-                    if (Build.VERSION.SDK_INT>=19){
-                        imagePath=handleImageOnkitkat(data);
+                if (resultCode == RESULT_OK) {
+                    if (Build.VERSION.SDK_INT >= 19) {
+                        imagePath = handleImageOnkitkat(data);
                         resettingUserLogo(imagePath);
 
-                    }else{
-                        imagePath= handleimageBefokitkat(data);
+                    } else {
+                        imagePath = handleimageBefokitkat(data);
                         resettingUserLogo(imagePath);
                     }
                 }
@@ -210,60 +212,63 @@ public class MyDataActivity extends ActionBarActivity {
                 break;
         }
     }
-    private String handleImageOnkitkat(Intent data){
-        String imagepath=null;
-        Uri uri=data.getData();
-        if (DocumentsContract.isDocumentUri(this,uri)){
-            String docid=DocumentsContract.getDocumentId(uri);
-            if ("com.android.providers.media.documents".equals(uri.getAuthority())){
-                String id=docid.split(":")[1];
-                String selection=MediaStore.Images.Media._ID+"="+id;
-                imagepath=getimagepath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,selection);
-            }else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
+
+    private String handleImageOnkitkat(Intent data) {
+        String imagepath = null;
+        Uri uri = data.getData();
+        if (DocumentsContract.isDocumentUri(this, uri)) {
+            String docid = DocumentsContract.getDocumentId(uri);
+            if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
+                String id = docid.split(":")[1];
+                String selection = MediaStore.Images.Media._ID + "=" + id;
+                imagepath = getimagepath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection);
+            } else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
                 Uri contentUri = ContentUris.withAppendedId(uri.parse("content://downloads/public_downloads"),
                         Long.valueOf(docid));
                 imagepath = getimagepath(contentUri, null);
             }
+        } else if ("content".equalsIgnoreCase(uri.getScheme())) {
+            imagepath = getimagepath(uri, null);
         }
-        else if ("content".equalsIgnoreCase(uri.getScheme())) {
-                imagepath=getimagepath(uri,null);
-            }
-        displayimage(imagepath);
-        return imagepath;
-    }
-    private String  handleimageBefokitkat(Intent data){
-        Uri uri=data.getData();
-        String imagepath= getimagepath(uri, null);
         displayimage(imagepath);
         return imagepath;
     }
 
-    private String getimagepath(Uri uri,String selection){
-        String path=null;
-        Cursor cursor=getContentResolver().query(uri, null, selection,null,null);
-        if (cursor!=null){
-            if (cursor.moveToFirst()){
-                path=cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-            }
-           cursor.close();
-        }
-    return path;
+    private String handleimageBefokitkat(Intent data) {
+        Uri uri = data.getData();
+        String imagepath = getimagepath(uri, null);
+        displayimage(imagepath);
+        return imagepath;
     }
-    private void displayimage(String imagepath){
-        if (imagepath!=null){
-            if(dialog!=null && dialog.isShowing())dialog.dismiss();
-            String uri = "file://"+imagepath;
+
+    private String getimagepath(Uri uri, String selection) {
+        String path = null;
+        Cursor cursor = getContentResolver().query(uri, null, selection, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            }
+            cursor.close();
+        }
+        return path;
+    }
+
+    private void displayimage(String imagepath) {
+        if (imagepath != null) {
+            if (dialog != null && dialog.isShowing()) dialog.dismiss();
+            String uri = "file://" + imagepath;
             imOfLogo.setImageURI(Uri.parse(uri));
-        }else{
-            Toast.makeText(this,"failed",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show();
         }
 
     }
-    public void resettingUserLogo(String imagePath){
-        File imageFile=new File(imagePath);
-        RequestParams replaceImage=new RequestParams();
-        AsyncHttpClient replace=new AsyncHttpClient();
-        replaceImage.put("userId",aUser.getUserId());
+
+    public void resettingUserLogo(String imagePath) {
+        File imageFile = new File(imagePath);
+        RequestParams replaceImage = new RequestParams();
+        AsyncHttpClient replace = new AsyncHttpClient();
+        replaceImage.put("userId", aUser.getUserId());
         try {
             replaceImage.put("file", imageFile);
         } catch (FileNotFoundException e) {

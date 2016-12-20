@@ -22,9 +22,13 @@ public class MyFragment extends Fragment {
     private LinearLayout linearLayout;
     private TextView textMy;
     private ListView mlistview;
+    private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_my,container,false);
+        if (view==null){
+            view=inflater.inflate(R.layout.fragment_my,container,false);
+        }
+
         final UserAdapter userAdapter=new UserAdapter(getActivity());
 
         linearLayout= (LinearLayout) view.findViewById(R.id.ll_login);
@@ -50,22 +54,27 @@ public class MyFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 UserEntity user;
                 user = (UserEntity) userAdapter.getItem(position);
-                if (user.getContent().equals("个人资料")) {
-                    if (!textMy.getText().toString().equals("登录")) {
-                        activity.toMyDatact();
-                    }else if (textMy.getText().toString().equals("登录")) {
+                if (textMy.getText().toString().equals("登录")) {
                         Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-//                            return;
-                    }
-                } else if (user.getContent().equals("我的关注")) {
+                            return;
+                }else   if (user.getContent().equals("个人资料")){
+                    activity.toMyDatact();
+                }else if (user.getContent().equals("我的关注")) {
+
                     //// TODO: 2016/12/13 跳转到历史记录
                 } else if (user.getContent().equals("部门管理")) {
+                    // TODO: 2016/12/20 t跳转到部门管理
 
-                } else if (user.getContent().equals("关于我们")) {
+                } else if(user.getContent().equals("关于我们")){
 
                 }
             }
         });
         return view;
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ((ViewGroup) view.getParent()).removeView(view);
     }
 }

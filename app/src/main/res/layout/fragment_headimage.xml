@@ -11,6 +11,12 @@
         android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="48dp"/>
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
+
     <ListView
         android:id="@+id/head_news"
         android:padding="12dp"

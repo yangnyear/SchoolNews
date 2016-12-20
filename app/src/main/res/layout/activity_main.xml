@@ -1,14 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v4.view.ViewPager
         android:id="@+id/Bellow_page"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
         android:layout_gravity="center">
     </android.support.v4.view.ViewPager>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#969595"/>
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/navi_radiogroup">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:button="@null"
+            android:drawableTop="@drawable/ic_image_homepage"
+            android:id="@+id/betton_head" />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_image_action"
+            android:layout_height="48dp"
+            android:id="@+id/betton_scecond" />
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_image_studentnution"
+            android:button="@null"
+            android:layout_height="48dp"
+            android:id="@+id/betton_thired" />
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/ic_image_userheadlogo"
+            android:gravity="center"
+            android:layout_height="48dp"
+            android:id="@+id/betton_fourth" />
+
+    </RadioGroup>
 
 </LinearLayout>

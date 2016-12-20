@@ -27,7 +27,7 @@ public class StudentunitionAdapter extends BaseAdapter {
     }
     //获得资源
     public List<StudentsUnition>students_unitions_list=new ArrayList<StudentsUnition>();{
-        String uri = "http://114.215.144.204:9090/avatar/yangrongyi";
+        String uri = "http://www.bug666.cn:8080/Images/headfirst/swpu_03.jpg";
         students_unitions_list.add(new StudentsUnition("石工院学生会", uri));
         students_unitions_list.add(new StudentsUnition("化工院学生会",uri));
         students_unitions_list.add(new StudentsUnition("计科院学生会",uri));
