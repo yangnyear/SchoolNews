@@ -19,6 +19,7 @@
     <RadioGroup
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:gravity="center_vertical"
         android:layout_height="wrap_content"
         android:id="@+id/navi_radiogroup">
 
@@ -27,8 +28,10 @@
             android:layout_weight="1"
             android:layout_height="48dp"
             android:gravity="center"
+            android:text="首页"
+            android:textColor="#aba9a9"
             android:button="@null"
-            android:drawableTop="@drawable/ic_image_homepage"
+            android:drawableTop="@drawable/radiobutton_selecter"
             android:id="@+id/betton_head" />
 
         <RadioButton
@@ -36,24 +39,30 @@
             android:button="@null"
             android:gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/ic_image_action"
+            android:text="校资讯"
+            android:textColor="#aba9a9"
+            android:drawableTop="@drawable/redionutton_selecter_action"
             android:layout_height="48dp"
             android:id="@+id/betton_scecond" />
         <RadioButton
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:drawableTop="@drawable/ic_image_studentnution"
+            android:drawableTop="@drawable/rediobutton_selecter_studentunit"
             android:button="@null"
             android:layout_height="48dp"
+            android:text="学生会"
+            android:textColor="#aba9a9"
             android:id="@+id/betton_thired" />
         <RadioButton
             android:layout_width="0dp"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/ic_image_userheadlogo"
+            android:drawableTop="@drawable/rediobutton_selecter_user"
             android:gravity="center"
             android:layout_height="48dp"
+            android:text="我的"
+            android:textColor="#aba9a9"
             android:id="@+id/betton_fourth" />
 
     </RadioGroup>

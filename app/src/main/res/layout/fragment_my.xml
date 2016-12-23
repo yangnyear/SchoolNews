@@ -3,14 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
-    <Button
-        android:id="@+id/ctn_my"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_user"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ff0328"
-        android:textColor="#fff"
-        android:textSize="20sp"
-        android:text="我的"/>
+        android:layout_height="?attr/actionBarSize"
+        app:title="我的"
+        app:theme="@android:style/ThemeOverlay.Material.Dark"
+        android:background="?attr/colorAccent"/>
     <LinearLayout
         android:clickable="true"
         android:id="@+id/ll_login"
@@ -29,13 +28,14 @@
             android:layout_height="64dp" />
         <LinearLayout
             android:orientation="vertical"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/text_username"
                 android:text="登录"
                 android:textStyle="italic"
-                android:textColor="#747474"
+                android:textColor="#ff0328"
                 android:layout_gravity="top"
                 android:layout_marginLeft="10dp"
                 android:textSize="24sp"
@@ -47,16 +47,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:textColor="#747474"
+                android:textColor="#ff0328"
                 android:textSize="10sp"
                 android:text=""/>
         </LinearLayout>
 
     </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
         <ListView
             android:id="@+id/list_user"
             android:background="#FFF"
@@ -65,15 +62,7 @@
             android:layout_weight="1"
             android:layout_height="0dp">
         </ListView>
-        <Button
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/bt_logout"
-            android:text="退出登录"
-            android:background="@drawable/btn_shape"
-            android:layout_width="200dp"
-            android:textColor="#fff"
-            android:textSize="20sp"
-            android:layout_height="36dp" />
-    </LinearLayout>
+
+
 
 </LinearLayout>

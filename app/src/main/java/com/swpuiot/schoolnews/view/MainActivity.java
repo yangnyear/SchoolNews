@@ -76,11 +76,13 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
                     if (masResponseEmpty.getContent().get(j).isFlag())
                     {
                         mlist.add(new HradMessages(masResponseEmpty.getContent().get(j).getTitle(),
-                                masResponseEmpty.getContent().get(j).getContent()));
+                                masResponseEmpty.getContent().get(j).getContent(),
+                                masResponseEmpty.getContent().get(j).getImageUrl()));
                     }
                     else if (!masResponseEmpty.getContent().get(j).isFlag()){
                         mylist.add(new HradMessages(masResponseEmpty.getContent().get(j).getTitle(),
-                                masResponseEmpty.getContent().get(j).getContent()));
+                                masResponseEmpty.getContent().get(j).getContent(),
+                                masResponseEmpty.getContent().get(j).getImageUrl()));
                     }
                 }
                 if(headImageFragment!=null){

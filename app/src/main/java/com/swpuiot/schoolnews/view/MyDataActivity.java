@@ -12,10 +12,11 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,10 +38,9 @@ public class MyDataActivity extends ActionBarActivity {
     public static final int GCOP_PHOTO = 2;
     public static final int CHOOSE_PHOTO = 3;
 
-    private ImageView imOfBack;
+    private Toolbar userInfoToolbar;
     private com.facebook.drawee.view.SimpleDraweeView imOfLogo;
     private UserResponseEmpty.DateBean aUser;
-    private TextView txtOfReplace;
     private TextView textOfMoto;
     private TextView txtOfName;
     private TextView txtOfMajor;
@@ -60,12 +60,13 @@ public class MyDataActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_my_data);
+        userInfoToolbar=(Toolbar) findViewById(R.id.toolbar_user);
+        setSupportActionBar(userInfoToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        imOfBack = (ImageView) findViewById(R.id.im_onewback);
+
         imOfLogo = (SimpleDraweeView) findViewById(R.id.image_userlogo);
-        txtOfReplace = (TextView) findViewById(R.id.text_replace);
         textOfMoto = (TextView) findViewById(R.id.text_onew_name);
 
         txtOfName = (TextView) findViewById(R.id.txt_aname);
@@ -85,10 +86,13 @@ public class MyDataActivity extends ActionBarActivity {
         txtOfInTime.setText(aUser.getInTime());
         txtOfOutTime.setText(aUser.getPutTime());
 
+//        userInfoToolbar.inflateMenu(R.menu.main);
+//        if(userInfoToolbar != null){
+//            setSupportActionBar(userInfoToolbar);
+//        }
 
         Uri uri = Uri.parse(aUser.getSetLogoSrc());
         imOfLogo.setImageURI(uri);
-
         imOfLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,8 +102,8 @@ public class MyDataActivity extends ActionBarActivity {
 
                 dialog = new AlertDialog
                         .Builder(MyDataActivity.this)
-                        .setTitle("更换头像")
                         .setView(view)
+                        .setTitle("修改头像")
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -135,13 +139,20 @@ public class MyDataActivity extends ActionBarActivity {
                 });
             }
         });
-        txtOfReplace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: 2016/12/13 跳转到编辑界面
-            }
-        });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     public void openPhotoHome(int a) {

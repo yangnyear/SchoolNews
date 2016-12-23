@@ -1,14 +1,15 @@
 package com.swpuiot.schoolnews.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.swpuiot.schoolnews.emtity.HradMessages;
 import com.swpuiot.schoolnews.R;
+import com.swpuiot.schoolnews.emtity.HradMessages;
 
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class HeadMessageAdapterr extends BaseAdapter {
             view= layoutInflater.inflate(R.layout.head_item,null);
             viewHoulder.title=(TextView)view.findViewById(R.id.head_message_title);
             viewHoulder.content= (TextView) view.findViewById(R.id.head_messa_content);
+            viewHoulder.image= ( com.facebook.drawee.view.SimpleDraweeView) view.findViewById(R.id.img_msg);
             view.setTag(viewHoulder);
         }else{
             view=convertView;
@@ -56,11 +58,13 @@ public class HeadMessageAdapterr extends BaseAdapter {
         HradMessages hrad_messages=HEAD_MESSAGElIST.get(position);
         viewHoulder.title.setText(hrad_messages.getMessageTitle());
         viewHoulder.content.setText(hrad_messages.getMessagecontant());
+        viewHoulder.image.setImageURI(Uri.parse(hrad_messages.getMsgImgId()));
         return view;
     }
     public class ViewHoulder{
        public TextView title;
         public TextView content;
+        public com.facebook.drawee.view.SimpleDraweeView image;
     }
 }
 

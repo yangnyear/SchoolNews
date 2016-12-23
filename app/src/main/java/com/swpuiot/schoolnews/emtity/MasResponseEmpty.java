@@ -9,34 +9,35 @@ public class MasResponseEmpty {
 
 
     /**
-     * content : [{"id":2,"title":"测试2","content":"测试活动信息属于最新还是往期","pubTime":1481372375000,"endTime":1481289017000,"departmentId":null,"facultyId":null,"typeId":null,"flag":false},{"id":1,"title":"测试1","content":"测试活动信息属于最新还是往期","pubTime":1481375437000,"endTime":1481461859000,"departmentId":null,"facultyId":null,"typeId":null,"flag":true}]
-     * totalElements : 2
+     * content : [{"id":4,"title":"\u201c追梦路上\u201d校园新歌首唱会！","content":"4月22日，我校将开启\u201c小小的梦想\u201d微公益之\u201c追梦路上\u201d首唱会！","pubTime":1481464387000,"endTime":1483451581000,"departmentId":null,"facultyId":null,"typeId":null,"flag":true,"imageUrl":"http://www.bug666.cn:8080/Images/massage/4.jpg"},{"id":3,"title":"校文化部娱乐活动开启啦！","content":"校文化部娱乐活动开启啦！","pubTime":1481464350000,"endTime":1483365137000,"departmentId":null,"facultyId":null,"typeId":null,"flag":true,"imageUrl":"http://www.bug666.cn:8080/Images/massage/3.jpg"},{"id":2,"title":"为期15天的大一新生军训结束！","content":"大一新生迎来今天的军训结束日！欢呼吧！！！","pubTime":1481372375000,"endTime":1483276217000,"departmentId":null,"facultyId":null,"typeId":null,"flag":true,"imageUrl":"http://www.bug666.cn:8080/Images/massage/2.jpg"},{"id":1,"title":"校学生会招贤纳士啦！！！！！","content":"欢迎广大学生参加校学生会招纳活动！","pubTime":1481375437000,"endTime":1481461859000,"departmentId":null,"facultyId":null,"typeId":null,"flag":false,"imageUrl":"http://www.bug666.cn:8080/Images/massage/1.jpg"}]
      * totalPages : 1
+     * totalElements : 4
      * last : true
      * first : true
      * sort : [{"direction":"DESC","property":"id","ignoreCase":false,"nullHandling":"NATIVE","ascending":false}]
-     * numberOfElements : 2
+     * numberOfElements : 4
      * size : 15
      * number : 0
      */
 
-    private int totalElements;
     private int totalPages;
+    private int totalElements;
     private boolean last;
     private boolean first;
     private int numberOfElements;
     private int size;
     private int number;
     /**
-     * id : 2
-     * title : 测试2
-     * content : 测试活动信息属于最新还是往期
-     * pubTime : 1481372375000
-     * endTime : 1481289017000
+     * id : 4
+     * title : “追梦路上”校园新歌首唱会！
+     * content : 4月22日，我校将开启“小小的梦想”微公益之“追梦路上”首唱会！
+     * pubTime : 1481464387000
+     * endTime : 1483451581000
      * departmentId : null
      * facultyId : null
      * typeId : null
-     * flag : false
+     * flag : true
+     * imageUrl : http://www.bug666.cn:8080/Images/massage/4.jpg
      */
 
     private List<ContentBean> content;
@@ -50,20 +51,20 @@ public class MasResponseEmpty {
 
     private List<SortBean> sort;
 
-    public int getTotalElements() {
-        return totalElements;
-    }
-
-    public void setTotalElements(int totalElements) {
-        this.totalElements = totalElements;
-    }
-
     public int getTotalPages() {
         return totalPages;
     }
 
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
+    }
+
+    public int getTotalElements() {
+        return totalElements;
+    }
+
+    public void setTotalElements(int totalElements) {
+        this.totalElements = totalElements;
     }
 
     public boolean isLast() {
@@ -132,6 +133,7 @@ public class MasResponseEmpty {
         private Object facultyId;
         private Object typeId;
         private boolean flag;
+        private String imageUrl;
 
         public int getId() {
             return id;
@@ -203,6 +205,14 @@ public class MasResponseEmpty {
 
         public void setFlag(boolean flag) {
             this.flag = flag;
+        }
+
+        public String getImageUrl() {
+            return imageUrl;
+        }
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
         }
     }
 

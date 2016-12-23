@@ -1,5 +1,6 @@
 package com.swpuiot.schoolnews.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -55,18 +56,19 @@ public class MyFragment extends Fragment {
                 UserEntity user;
                 user = (UserEntity) userAdapter.getItem(position);
                 if (textMy.getText().toString().equals("登录")) {
-                        Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                            return;
-                }else   if (user.getContent().equals("个人资料")){
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (user.getContent().equals("个人资料")) {
                     activity.toMyDatact();
-                }else if (user.getContent().equals("我的关注")) {
+                } else if (user.getContent().equals("我的关注")) {
 
                     //// TODO: 2016/12/13 跳转到历史记录
                 } else if (user.getContent().equals("部门管理")) {
                     // TODO: 2016/12/20 t跳转到部门管理
 
-                } else if(user.getContent().equals("关于我们")){
-
+                } else if (user.getContent().equals("关于我们")) {
+                    Intent intent=new Intent(getActivity(),AboutOursActivity.class);
+                    startActivity(intent);
                 }
             }
         });

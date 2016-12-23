@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Button
-        android:id="@+id/btn_action"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_user"
         android:layout_width="match_parent"
-        android:background="#ff0328"
-        android:text="活动"
-        android:textSize="20sp"
-        android:textColor="#fff"
-        android:layout_height="48dp" />
+        android:layout_height="?attr/actionBarSize"
+        app:title="校资讯"
+        app:theme="@android:style/ThemeOverlay.Material.Dark"
+        android:background="?attr/colorAccent"/>
     <ListView
+        android:padding="12dp"
         android:id="@+id/list_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
