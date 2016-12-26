@@ -7,6 +7,8 @@ public class HradMessages {
 
     private String MessageTitle;
     private String Messagecontant;
+    private String msgImgId;
+    private Long mwssageid;
 
     public String getMessageTitle() {
         return MessageTitle;
@@ -32,14 +34,19 @@ public class HradMessages {
         this.msgImgId = msgImgId;
     }
 
-    public HradMessages(String messageTitle, String messagecontant, String msgImgId) {
+    public Long getMwssageid() {
+        return mwssageid;
+    }
+
+    public void setMwssageid(Long mwssageid) {
+        this.mwssageid = mwssageid;
+    }
+
+    public HradMessages(String messageTitle, String messagecontant, String msgImgId, Long mwssageid) {
 
         MessageTitle = messageTitle;
         Messagecontant = messagecontant;
         this.msgImgId = msgImgId;
+        this.mwssageid = mwssageid;
     }
-
-    private String msgImgId;
-
-
 }

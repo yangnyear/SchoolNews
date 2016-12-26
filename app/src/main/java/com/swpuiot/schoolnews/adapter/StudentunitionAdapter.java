@@ -28,16 +28,16 @@ public class StudentunitionAdapter extends BaseAdapter {
     //获得资源
     public List<StudentsUnition>students_unitions_list=new ArrayList<StudentsUnition>();{
         String uri = "http://www.bug666.cn:8080/Images/headfirst/swpu_03.jpg";
-        students_unitions_list.add(new StudentsUnition("石工院学生会", uri));
-        students_unitions_list.add(new StudentsUnition("化工院学生会",uri));
-        students_unitions_list.add(new StudentsUnition("计科院学生会",uri));
-        students_unitions_list.add(new StudentsUnition("土建院学生会",uri));
-        students_unitions_list.add(new StudentsUnition("经管院学生会",uri));
-        students_unitions_list.add(new StudentsUnition("外语院学生会",uri));
-        students_unitions_list.add(new StudentsUnition("地科院学生会",uri));
-        students_unitions_list.add(new StudentsUnition("机电院学生会",uri));
-        students_unitions_list.add(new StudentsUnition("理学院学生会",uri));
-        students_unitions_list.add(new StudentsUnition("电信院学生会",uri));
+        students_unitions_list.add(new StudentsUnition("石工院学生会", uri,1));
+        students_unitions_list.add(new StudentsUnition("化工院学生会",uri,2));
+        students_unitions_list.add(new StudentsUnition("计科院学生会",uri,3));
+        students_unitions_list.add(new StudentsUnition("土建院学生会",uri,4));
+        students_unitions_list.add(new StudentsUnition("经管院学生会",uri,5));
+        students_unitions_list.add(new StudentsUnition("外语院学生会",uri,6));
+        students_unitions_list.add(new StudentsUnition("地科院学生会",uri,7));
+        students_unitions_list.add(new StudentsUnition("机电院学生会",uri,8));
+        students_unitions_list.add(new StudentsUnition("理学院学生会",uri,9));
+        students_unitions_list.add(new StudentsUnition("电信院学生会",uri,10));
 
 
     }

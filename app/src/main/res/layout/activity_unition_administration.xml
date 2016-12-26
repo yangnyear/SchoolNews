@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.DepartmentAdministrationActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_unitionadministration"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="部门管理"
+        app:theme="@android:style/ThemeOverlay.Material.Dark"
+        app:popupTheme="@android:style/ThemeOverlay.Material.Light"
+        android:background="?attr/colorAccent"/>
+
+    <FrameLayout
+        android:background="#ff0328"
+        android:layout_width="match_parent"
+        android:layout_height="168dp">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image_department"
+            android:src="@drawable/ic_user"
+            app:roundAsCircle="true"
+            app:actualImageScaleType="centerInside"
+            android:layout_gravity="center"
+            app:placeholderImage="@drawable/ic_user"
+            android:layout_width="match_parent"
+            android:layout_height="68dp" />
+        <TextView
+            android:id="@+id/txt_department"
+            android:textColor="#fff"
+            android:layout_gravity="center_horizontal"
+            android:textSize="12sp"
+            android:layout_marginTop="130dp"
+            android:text="科技部"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
+    <ListView
+        android:id="@+id/list_department_administration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
+</LinearLayout>

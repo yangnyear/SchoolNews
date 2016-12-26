@@ -6,6 +6,7 @@ package com.swpuiot.schoolnews.emtity;
 public class StudentsUnition {
     private String UnitionName;
     private String imageid;
+    private int id;
 
     public String getUnitionName() {
         return UnitionName;
@@ -23,9 +24,19 @@ public class StudentsUnition {
         this.imageid = imageid;
     }
 
-    public StudentsUnition(String unitionName, String imageid) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public StudentsUnition(String unitionName, String imageid, int id) {
+
         UnitionName = unitionName;
         this.imageid = imageid;
+        this.id = id;
     }
 }
 

@@ -39,7 +39,7 @@
             android:button="@null"
             android:gravity="center"
             android:layout_weight="1"
-            android:text="校资讯"
+            android:text="西油"
             android:textColor="#aba9a9"
             android:drawableTop="@drawable/redionutton_selecter_action"
             android:layout_height="48dp"

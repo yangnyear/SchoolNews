@@ -23,7 +23,7 @@ import org.apache.http.Header;
 
 import java.io.IOException;
 
-public class LoginActivity extends ActionBarActivity {
+public class  LoginActivity extends ActionBarActivity {
     private EditText username;
     private EditText userpassword;
     private Button userlogin;
@@ -54,7 +54,7 @@ public class LoginActivity extends ActionBarActivity {
             remember.setChecked(true);
         }
 
-        userlogin.setOnClickListener(new View.OnClickListener() {
+        userlogin.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String  name=username.getText().toString().trim();

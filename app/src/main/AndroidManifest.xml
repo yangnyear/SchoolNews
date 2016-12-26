@@ -22,8 +22,12 @@
         </activity>
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.MyDataActivity" />
-        <activity android:name=".view.AboutOursActivity"
-            ></activity>
+        <activity android:name=".view.AboutOursActivity" />
+        <activity android:name=".view.VisitWebsitsActivity" />
+        <activity android:name=".view.DepartmentAdministrationActivity" />
+        <activity android:name=".view.MyConcernActivity" />
+        <activity android:name=".view.HistoryActivity" />
+        <activity android:name=".view.SendFileActivity"></activity>
     </application>
 
 </manifest>
