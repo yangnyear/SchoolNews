@@ -19,8 +19,8 @@
         android:layout_height="160dp" />
 
     <ListView
+        android:layout_marginTop="12dp"
         android:id="@+id/head_news"
-        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ListView>

@@ -33,6 +33,7 @@ import com.swpuiot.schoolnews.adapter.BannerLoader;
 import com.swpuiot.schoolnews.adapter.HeadMessageAdapterr;
 import com.swpuiot.schoolnews.emtity.HradMessages;
 import com.swpuiot.schoolnews.emtity.UserResponseEmpty;
+import com.swpuiot.schoolnews.utils.HistoryUtils;
 import com.youth.banner.Banner;
 
 import org.apache.http.Header;
@@ -71,7 +72,7 @@ public class MyDataActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_data);
-        userInfoToolbar=(Toolbar) findViewById(R.id.toolbar_user);
+        userInfoToolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(userInfoToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -328,7 +329,7 @@ public class MyDataActivity extends ActionBarActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            if (view==null){
+            if (view == null) {
                 view = inflater.inflate(R.layout.fragment_headimage, container, false);
             }
 
@@ -350,9 +351,17 @@ public class MyDataActivity extends ActionBarActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Long idOfMessage=mlist.get(position).getMwssageid();
-                    Intent intent=new Intent(getActivity(),VisitWebsitsActivity.class);
-                    intent.putExtra("message_id",idOfMessage);
+
+                    HradMessages m = mlist.get(position);
+                    String title = m.getMessageTitle();
+                    Long mwssageid = m.getMwssageid();
+                    String url = "http://www.bug666.cn:8090/getMessage?messageId=" + mwssageid;
+
+                    HistoryUtils.saveHistory(new HistoryUtils.HistoryItem(title, url));
+
+                    Intent intent = new Intent(getActivity(), WebActivity.class);
+                    intent.putExtra(WebActivity.ACTION_TITLE, title);
+                    intent.putExtra(WebActivity.ACTION_URL, url);
                     startActivity(intent);
 
                 }
@@ -364,6 +373,7 @@ public class MyDataActivity extends ActionBarActivity {
         public void notifyDataSetChanged() {
             headMessageAdapterr.notifyDataSetChanged();
         }
+
         @Override
         public void onDestroyView() {
             super.onDestroyView();

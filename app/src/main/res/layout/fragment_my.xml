@@ -17,36 +17,36 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="72dp">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:scaleType="centerCrop"
             android:id="@+id/image_mylogo"
+            android:layout_marginLeft="20dp"
             app:roundAsCircle="true"
-            android:layout_width="64dp"
+            android:layout_width="48dp"
+            android:layout_gravity="center_vertical"
             app:placeholderImage="@drawable/ic_user"
-            android:layout_height="64dp" />
+            android:layout_height="48dp" />
         <LinearLayout
             android:orientation="vertical"
             android:layout_gravity="center"
+            android:paddingLeft="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/text_username"
                 android:text="登录"
                 android:textColor="#2e2e2e"
-                android:layout_gravity="top"
-                android:layout_marginLeft="10dp"
                 android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:layout_marginTop="2dp"
                 android:id="@+id/text_user_xiao"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:textColor="#484647"
                 android:textSize="10sp"
                 android:text=""/>
         </LinearLayout>

@@ -27,7 +27,8 @@
         <activity android:name=".view.DepartmentAdministrationActivity" />
         <activity android:name=".view.MyConcernActivity" />
         <activity android:name=".view.HistoryActivity" />
-        <activity android:name=".view.SendFileActivity"></activity>
+        <activity android:name=".view.SendFileActivity" />
+        <activity android:name=".view.WebActivity"></activity>
     </application>
 
 </manifest>

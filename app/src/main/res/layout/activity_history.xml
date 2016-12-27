@@ -14,4 +14,11 @@
         app:theme="@android:style/ThemeOverlay.Material.Dark"
         app:popupTheme="@android:style/ThemeOverlay.Material.Light"
         android:background="?attr/colorAccent"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@+id/lv"
+        android:layout_height="match_parent"/>
+
+
 </LinearLayout>

@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
+    android:layout_height="120dp">
     <LinearLayout
+        android:layout_gravity="center_vertical"
         android:orientation="vertical"
         android:layout_width="1dp"
         android:layout_weight="2"
@@ -14,28 +16,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="#564444"
+            android:textColor="#313131"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:ellipsize="end"
-            android:textStyle="bold"
-            android:text="消息题目"/>
+            android:text="消息题目题目题目题目题目题目题目"/>
         <TextView
+            android:layout_marginTop="3dp"
             android:id="@+id/head_messa_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="消息内容"
+            android:text="消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容"
             android:maxLines="2"
-            android:gravity="center_vertical"
-            android:textSize="18sp"
+            android:minLines="2"
+            android:gravity="start"
+            android:textSize="14sp"
             />
     </LinearLayout>
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/img_msg"
+        android:layout_marginLeft="8dp"
+        android:layout_gravity="center_vertical"
         android:src="@drawable/ic_user"
-        app:actualImageScaleType="centerInside"
+        app:actualImageScaleType="centerCrop"
         app:placeholderImage="@drawable/ic_user"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="68dp" />
+        android:layout_width="72dp"
+        android:layout_height="match_parent" />
 </LinearLayout>

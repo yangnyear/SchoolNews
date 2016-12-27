@@ -17,9 +17,8 @@
         <TextView
             android:id="@+id/unition_name"
             android:text="计科院学生会"
-            android:textStyle="italic"
             android:textSize="18sp"
-            android:layout_marginLeft="3dp"
+            android:layout_marginLeft="8dp"
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:textColor="#fff"

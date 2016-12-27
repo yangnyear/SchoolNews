@@ -56,7 +56,10 @@ public class MyFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 UserEntity user;
                 user = (UserEntity) userAdapter.getItem(position);
-                if (textMy.getText().toString().equals("登录")) {
+                if (user.getContent().equals("关于我们")) {
+                    Intent intent = new Intent(getActivity(), AboutOursActivity.class);
+                    startActivity(intent);
+                }else if (textMy.getText().toString().equals("登录")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (user.getContent().equals("个人资料")) {
@@ -67,9 +70,6 @@ public class MyFragment extends Fragment {
                     activity.toHistoryActivity();
                 } else if (user.getContent().equals("部门管理")) {
                     activity.toUnitionAdministrationActivity();
-                } else if (user.getContent().equals("关于我们")) {
-                    Intent intent = new Intent(getActivity(), AboutOursActivity.class);
-                    startActivity(intent);
                 }
             }
         });

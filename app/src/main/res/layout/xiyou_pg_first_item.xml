@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:paddingTop="15dp"
+    android:orientation="vertical">
         <GridView
             android:id="@+id/mv_action_first"
             android:layout_width="match_parent"

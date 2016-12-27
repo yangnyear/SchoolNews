@@ -14,9 +14,10 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#969595"/>
+        android:background="#c7c6c6"/>
 
     <RadioGroup
+        android:paddingTop="4dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:gravity="center_vertical"
@@ -31,6 +32,7 @@
             android:text="首页"
             android:textColor="#aba9a9"
             android:button="@null"
+            android:textSize="10dp"
             android:drawableTop="@drawable/radiobutton_selecter"
             android:id="@+id/betton_head" />
 
@@ -40,6 +42,7 @@
             android:gravity="center"
             android:layout_weight="1"
             android:text="西油"
+            android:textSize="10dp"
             android:textColor="#aba9a9"
             android:drawableTop="@drawable/redionutton_selecter_action"
             android:layout_height="48dp"
@@ -50,6 +53,7 @@
             android:gravity="center"
             android:drawableTop="@drawable/rediobutton_selecter_studentunit"
             android:button="@null"
+            android:textSize="10dp"
             android:layout_height="48dp"
             android:text="学生会"
             android:textColor="#aba9a9"
@@ -62,6 +66,7 @@
             android:gravity="center"
             android:layout_height="48dp"
             android:text="我的"
+            android:textSize="10dp"
             android:textColor="#aba9a9"
             android:id="@+id/betton_fourth" />
 
