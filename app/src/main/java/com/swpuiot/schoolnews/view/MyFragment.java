@@ -64,8 +64,6 @@ public class MyFragment extends Fragment {
                     return;
                 } else if (user.getContent().equals("个人资料")) {
                     activity.toMyDatact();
-                } else if (user.getContent().equals("我的关注")) {
-                    activity.toMyCouncernActivity();
                 } else if (user.getContent().equals("我的足迹")) {
                     activity.toHistoryActivity();
                 } else if (user.getContent().equals("部门管理")) {

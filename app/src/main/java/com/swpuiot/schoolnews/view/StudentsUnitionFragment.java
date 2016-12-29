@@ -34,8 +34,11 @@ public class StudentsUnitionFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 StudentsUnition studentsUnition= (StudentsUnition)studentunitionAdapter.getItem(position);
                 long instituteId = (long)studentsUnition.getId();
-                Intent intent=new Intent(getActivity(),VisitWebsitsActivity.class);
-                intent.putExtra("studentUnitionId",instituteId);
+                String title=studentsUnition.getUnitionName();
+                String url="http://www.bug666.cn:8090/united";
+                Intent intent=new Intent(getActivity(),WebActivity.class);
+                intent.putExtra(WebActivity.ACTION_TITLE, title);
+                intent.putExtra(WebActivity.ACTION_URL, url);
                 startActivity(intent);
             }
         });

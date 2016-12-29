@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.swpuiot.schoolnews.view.MyConcernActivity">
+    tools:context="com.swpuiot.schoolnews.view.SettingActivity">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_councern"
+        android:id="@+id/toolbar_settinginformation"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="我的关注"
+        app:title="编辑信息"
         app:theme="@android:style/ThemeOverlay.Material.Dark"
         app:popupTheme="@android:style/ThemeOverlay.Material.Light"
         android:background="?attr/colorAccent"/>

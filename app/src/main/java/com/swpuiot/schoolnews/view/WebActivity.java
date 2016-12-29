@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.swpuiot.schoolnews.R;
@@ -31,6 +32,7 @@ public class WebActivity extends AppCompatActivity {
         WebView webView = (WebView) findViewById(R.id.wv);
         if (webView != null)
             webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient());
 
         Intent intent = getIntent();
 

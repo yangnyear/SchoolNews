@@ -27,7 +27,6 @@ public class UserAdapter extends BaseAdapter{
     }
     private List<UserEntity>listOfUser=new ArrayList<UserEntity>();{
         listOfUser.add(new UserEntity("个人资料",R.drawable.next_item_icon));
-        listOfUser.add(new UserEntity("我的关注",R.drawable.next_item_icon));
         listOfUser.add(new UserEntity("我的足迹",R.drawable.next_item_icon));
         listOfUser.add(new UserEntity("部门管理",R.drawable.next_item_icon));
         listOfUser.add(new UserEntity("关于我们",R.drawable.next_item_icon));

@@ -1,119 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.swpuiot.schoolnews.view.SendFileActivity">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_sendfile"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="提交文件"
-        app:theme="@android:style/ThemeOverlay.Material.Dark"
+        android:background="?attr/colorAccent"
         app:popupTheme="@android:style/ThemeOverlay.Material.Light"
-        android:background="?attr/colorAccent"/>
+        app:theme="@android:style/ThemeOverlay.Material.Dark"
+        app:title="提交文件" />
+
     <LinearLayout
-        android:padding="12dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="发件人:"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_weight="3"
-            android:textSize="18sp"
-            android:text="科技部羊荣毅"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:padding="12dp">
 
         <TextView
-            android:padding="12dp"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="发给:"
-            android:textSize="18sp"
-            android:textColor="#5e5d5d"
             android:gravity="center"
+            android:text="发件人:"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="科技部羊荣毅"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_height="wrap_content" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="发给:"
+            android:textColor="#5e5d5d"
+            android:textSize="18sp" />
+
         <Spinner
             android:id="@+id/spinner_academy"
             android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content">
-        </Spinner>
+            android:layout_height="wrap_content"
+            android:layout_weight="3"></Spinner>
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <Space
-            android:padding="12dp"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="18sp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_height="wrap_content" />
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:textSize="18sp" />
+
         <Spinner
             android:id="@+id/spinner_departtment"
             android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content">
-        </Spinner>
+            android:layout_height="wrap_content"
+            android:layout_weight="3"></Spinner>
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:padding="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
         <TextView
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="主题:"
-            android:textSize="18sp"
-            android:layout_height="wrap_content" />
+            android:textSize="18sp" />
+
         <EditText
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:maxLines="2"
-            android:layout_height="wrap_content" />
+            android:maxLines="2" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/txt_selectfile"
         android:layout_width="match_parent"
-        android:padding="12dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
         <TextView
-            android:layout_weight="1"
-            android:text="选择附件:"
-            android:gravity="center"
             android:layout_width="0dp"
-            android:textSize="18sp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="选择附件:"
+            android:textSize="18sp" />
+
         <Space
             android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="3" />
     </LinearLayout>
-    <ListView
-        android:id="@+id/list_file"
+    <LinearLayout
+        android:padding="12dp"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </ListView>
+        <TextView
+            android:id="@+id/txt_filename"
+            android:text="一个被选择的文件"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:textColor="#646262"
+            android:layout_weight="3"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_removefile"
+            android:text="删除"
+            android:textColor="#646262"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/image_sendfile"
+        android:src="@drawable/ic_image_send"
+        app:roundAsCircle="true"
+        android:visibility="invisible"
+        app:actualImageScaleType="centerInside"
+        android:layout_gravity="center"
+        app:placeholderImage="@drawable/ic_image_send"
+        android:layout_width="match_parent"
+        android:layout_height="68dp" />
+
 
 </LinearLayout>

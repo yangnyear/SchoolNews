@@ -162,6 +162,12 @@ public class MyDataActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.setting:
+                Intent intent=new Intent(MyDataActivity.this,SettingActivity.class);
+                intent.putExtra("vuser",aUser);
+                startActivity(intent);
+        }
         finish();
         return super.onOptionsItemSelected(item);
     }
@@ -309,6 +315,7 @@ public class MyDataActivity extends ActionBarActivity {
             }
         });
     }
+//此处....................................................................................................
 
     public static class HeadImageFragment extends Fragment {
         private HeadMessageAdapterr headMessageAdapterr;

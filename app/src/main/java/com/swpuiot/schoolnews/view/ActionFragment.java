@@ -1,5 +1,6 @@
 package com.swpuiot.schoolnews.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
@@ -16,6 +18,7 @@ import com.swpuiot.schoolnews.adapter.MyGridViewAdapter;
 import com.swpuiot.schoolnews.adapter.MyOnotherGridViewAdapter;
 import com.swpuiot.schoolnews.adapter.MyViewPagerAdapter;
 import com.swpuiot.schoolnews.emtity.HradMessages;
+import com.swpuiot.schoolnews.utils.HistoryUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +72,26 @@ public class ActionFragment extends Fragment {
         headMessageAdapterr = new HeadMessageAdapterr(getActivity(), mlist);
         listView = (ListView) view.findViewById(R.id.list_action);
         listView.setAdapter(headMessageAdapterr);
+        //设置点击事件监听
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                HradMessages m = mlist.get(position);
+                String title = m.getMessageTitle();
+                Long mwssageid = m.getMwssageid();
+                String url = "http://www.bug666.cn:8090/getMessage?messageId=" + mwssageid;
+
+                HistoryUtils.saveHistory(new HistoryUtils.HistoryItem(title, url));
+
+                Intent intent = new Intent(getActivity(), WebActivity.class);
+                intent.putExtra(WebActivity.ACTION_TITLE, title);
+                intent.putExtra(WebActivity.ACTION_URL, url);
+                startActivity(intent);
+
+            }
+        });
+
         if (headMessageAdapterr != null)
             headMessageAdapterr.notifyDataSetChanged();
         return view;

@@ -10,11 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -23,6 +25,7 @@ import com.swpuiot.schoolnews.R;
 import org.apache.http.Header;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +37,11 @@ public class SendFileActivity extends AppCompatActivity implements AdapterView.O
     private ArrayAdapter<String> departmentAdapter;
     private String academyString;
     private String depatmentString;
-    private ListView fileListview;
+    private TextView textViewOfFileName;
+    private Button btnOfRemoveFile;
     private LinearLayout linearLayoutOfChoseFile;
-    private  List<File>fileList=new ArrayList<File>();
+    private  File file;
+    public com.facebook.drawee.view.SimpleDraweeView sendImage;
 
     private List<String> academyStringList = new ArrayList<String>();
 
@@ -82,7 +87,9 @@ public class SendFileActivity extends AppCompatActivity implements AdapterView.O
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         academyspinner = (Spinner) findViewById(R.id.spinner_academy);
         departmentSpinner = (Spinner) findViewById(R.id.spinner_departtment);
-        fileListview = (ListView) findViewById(R.id.list_file);
+        textViewOfFileName= (TextView) findViewById(R.id.txt_filename);
+        btnOfRemoveFile= (Button) findViewById(R.id.btn_removefile);
+        sendImage= (SimpleDraweeView) findViewById(R.id.image_sendfile);
         linearLayoutOfChoseFile= (LinearLayout) findViewById(R.id.txt_selectfile);
         //创建Adapter
         academyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, academyStringList);
@@ -101,7 +108,12 @@ public class SendFileActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 openFileManegger(openFilemanegger);
-//                sendFileToservers();
+            }
+        });
+        sendImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendFileToservers();
             }
         });
     }
@@ -142,12 +154,12 @@ public class SendFileActivity extends AppCompatActivity implements AdapterView.O
 //            actualimagecursor.moveToFirst();
 //            String file_path = actualimagecursor.getString(actual_image_column_index);
             String file_path = uri.getPath();
-            File file = new File(file_path);
-            fileList.add(file);
+            file = new File(file_path);
             //将文件信息显示在文件列表中
-            Toast.makeText(SendFileActivity.this, "即将上传文件: "+file.getName(), Toast.LENGTH_SHORT).show();
-
-
+            Toast.makeText(SendFileActivity.this, "点击上传提交文件: "+file.getName(), Toast.LENGTH_SHORT).show();
+            textViewOfFileName.setText(file.getName());
+            linearLayoutOfChoseFile.setVisibility(View.VISIBLE);
+            sendImage.setVisibility(View.VISIBLE);
 //            sendFileToservers();
         }
 
@@ -158,10 +170,14 @@ public class SendFileActivity extends AppCompatActivity implements AdapterView.O
         RequestParams sendFilerequstparams = new RequestParams();
         AsyncHttpClient sendFile = new AsyncHttpClient();
         //添加传递参数
-        sendFilerequstparams.add("acadeny",academyString);
+        sendFilerequstparams.add("academy",academyString);
         sendFilerequstparams.add("department",depatmentString);
-        sendFilerequstparams.put("file", fileList);
-        sendFile.post(" ", sendFilerequstparams, new AsyncHttpResponseHandler() {
+        try {
+            sendFilerequstparams.put("fileList", file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        sendFile.post("http://www.bug666.cn:8090/uploadfile", sendFilerequstparams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
                 Toast.makeText(SendFileActivity.this,"文件发送成功",Toast.LENGTH_SHORT).show();

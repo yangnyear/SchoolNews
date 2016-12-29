@@ -170,10 +170,10 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
         Intent intent=new Intent(MainActivity.this,HistoryActivity.class);
         startActivity(intent);
     }
-    public void toMyCouncernActivity(){
-        Intent intent=new Intent(MainActivity.this,MyConcernActivity.class);
-        startActivity(intent);
-    }
+//    public void toMyCouncernActivity(){
+//        Intent intent=new Intent(MainActivity.this,MyConcernActivity.class);
+//        startActivity(intent);
+//    }
 
 
     @Override

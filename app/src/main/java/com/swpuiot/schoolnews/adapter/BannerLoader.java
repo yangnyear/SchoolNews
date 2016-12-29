@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.swpuiot.schoolnews.view.VisitWebsitsActivity;
+import com.swpuiot.schoolnews.view.WebActivity;
 import com.youth.banner.loader.ImageLoader;
 
 /**
@@ -27,8 +27,11 @@ public class BannerLoader extends ImageLoader {
         simpleDraweeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent headIntent=new Intent(context,VisitWebsitsActivity.class);
-                headIntent.putExtra("Start_SWPU",1);
+                String title="西南石油大学";
+                String url="http://www.baidu.com";
+                Intent headIntent=new Intent(context,WebActivity.class);
+                headIntent.putExtra(WebActivity.ACTION_TITLE, title);
+                headIntent.putExtra(WebActivity.ACTION_URL, url);
                 context.startActivity(headIntent);
             }
         });
