@@ -34,14 +34,14 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private List<Fragment> viewList;
     private ViewPager viewPager;
-    private MyDataActivity.HeadImageFragment headImageFragment;
+    private HeadImageFragment headImageFragment;
     private ActionFragment actionFragment;
     private StudentsUnitionFragment studentsUnitionFragment;
     private MyFragment myFragment;
     public UserResponseEmpty.DateBean userDataBean;
     public List<HradMessages> mlist = new ArrayList<HradMessages>();
     public List<HradMessages> mylist = new ArrayList<HradMessages>();
-
+    private MypagerAdapter mypagerAdapter;
     private RadioGroup radioGroup;
 
 
@@ -51,16 +51,43 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        viewPager = (ViewPager) findViewById(R.id.Bellow_page);
-
         //加载底部导航栏
-        radioGroup = (RadioGroup) findViewById(R.id.navi_radiogroup);
         findViewById(R.id.betton_head).setOnClickListener(this);
         findViewById(R.id.betton_scecond).setOnClickListener(this);
         findViewById(R.id.betton_thired).setOnClickListener(this);
         findViewById(R.id.betton_fourth).setOnClickListener(this);
 
         //访问网络，获得message
+        getMessageData();
+        //初始化gegefragment
+        initialization();
+
+    }
+    public void initialization(){
+        viewPager = (ViewPager) findViewById(R.id.Bellow_page);
+        radioGroup = (RadioGroup) findViewById(R.id.navi_radiogroup);
+        viewList = new ArrayList<Fragment>();
+
+        headImageFragment = new HeadImageFragment();
+        actionFragment = new ActionFragment();
+        studentsUnitionFragment = new StudentsUnitionFragment();
+        myFragment = new MyFragment();
+        headImageFragment.setMlist(mlist);
+        actionFragment.setMlist(mylist);
+
+        viewList.add(headImageFragment);
+        viewList.add(actionFragment);
+        viewList.add(studentsUnitionFragment);
+        viewList.add(myFragment);
+        //创建pagerAdapter适配器
+        mypagerAdapter = new MypagerAdapter(getSupportFragmentManager(), viewList);
+        //加载适配器
+        viewPager.setAdapter(mypagerAdapter);
+        //检查监听滑动
+        viewPager.setOnPageChangeListener(this);
+        radioGroup.check(R.id.betton_head);
+    }
+    public void getMessageData(){
         AsyncHttpClient test = new AsyncHttpClient();
         test.get("http://www.bug666.cn:8090/getAllMessages", new AsyncHttpResponseHandler() {
             @Override
@@ -104,30 +131,6 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
 
             }
         });
-
-
-
-
-        viewList = new ArrayList<Fragment>();
-
-        headImageFragment = new MyDataActivity.HeadImageFragment();
-        actionFragment = new ActionFragment();
-        studentsUnitionFragment = new StudentsUnitionFragment();
-        myFragment = new MyFragment();
-        headImageFragment.setMlist(mlist);
-        actionFragment.setMlist(mylist);
-
-        viewList.add(headImageFragment);
-        viewList.add(actionFragment);
-        viewList.add(studentsUnitionFragment);
-        viewList.add(myFragment);
-        //创建pagerAdapter适配器
-        MypagerAdapter mypagerAdapter = new MypagerAdapter(getSupportFragmentManager(), viewList);
-        //加载适配器
-        viewPager.setAdapter(mypagerAdapter);
-        //检查监听滑动
-        viewPager.setOnPageChangeListener(this);
-        radioGroup.check(R.id.betton_head);
     }
 
     public void toLoginAct() {
@@ -170,10 +173,6 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
         Intent intent=new Intent(MainActivity.this,HistoryActivity.class);
         startActivity(intent);
     }
-//    public void toMyCouncernActivity(){
-//        Intent intent=new Intent(MainActivity.this,MyConcernActivity.class);
-//        startActivity(intent);
-//    }
 
 
     @Override
@@ -234,26 +233,4 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
                 break;
         }
     }
-//    public List getFirstGridViewList(){
-//        List<GridViewentity>gridViewentityList=new ArrayList<GridViewentity>();{
-//            new GridViewentity(R.drawable.face_01,"快乐石工");
-//            new GridViewentity(R.drawable.face_02,"灵动计科");
-//            new GridViewentity(R.drawable.face_03,"呆萌化工");
-//            new GridViewentity(R.drawable.face_04,"静默土建");
-//            new GridViewentity(R.drawable.face_05,"优雅外语");
-//            new GridViewentity(R.drawable.face_06,"多彩材科");
-//            new GridViewentity(R.drawable.face_07,"幸福法学");
-//            new GridViewentity(R.drawable.face_08,"缤纷艺术");
-//        }
-//        return gridViewentityList;
-//    }
-//    public List getScendGridViewList(){
-//        List<GridViewentity>gridViewentityList=new ArrayList<GridViewentity>();{
-//            new GridViewentity(R.drawable.face_09,"无限地科");
-//            new GridViewentity(R.drawable.face_10,"刚强体育");
-//            new GridViewentity(R.drawable.face_11,"竞彩电信");
-//            new GridViewentity(R.drawable.face_12,"奋进机电");
-//        }
-//        return gridViewentityList;
-//    }
 }

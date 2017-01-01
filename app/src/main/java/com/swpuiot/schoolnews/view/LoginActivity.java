@@ -23,7 +23,7 @@ import org.apache.http.Header;
 
 import java.io.IOException;
 
-public class  LoginActivity extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
     private EditText username;
     private EditText userpassword;
     private Button userlogin;
@@ -31,34 +31,46 @@ public class  LoginActivity extends ActionBarActivity {
     private SharedPreferences.Editor editor;
     private CheckBox remember;
     private TextView lostpassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
-        username= (EditText) findViewById(R.id.edittext_username);
-        userpassword= (EditText) findViewById(R.id.edittext_password);
-        userlogin= (Button) findViewById(R.id.button_login);
-        remember= (CheckBox) findViewById(R.id.box_load);
-        lostpassword= (TextView) findViewById(R.id.text_lost);
+        initialization();
+        remenberPassaword();
+        userlogin.setOnClickListener(this);
+        lostpassword.setOnClickListener(this);
+    }
 
+    public void remenberPassaword() {
         pref = getSharedPreferences("setting", MODE_PRIVATE);
-        boolean isremenbered=pref.getBoolean("remember_password", false);
+        boolean isremenbered = pref.getBoolean("remember_password", false);
 
         //记住密码
-        if (isremenbered){
-            String load_name=pref.getString("name","");
-            String load_password=pref.getString("password","");
+        if (isremenbered) {
+            String load_name = pref.getString("name", "");
+            String load_password = pref.getString("password", "");
             username.setText(load_name);
             userpassword.setText(load_password);
             remember.setChecked(true);
         }
+    }
 
-        userlogin.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String  name=username.getText().toString().trim();
-                String password=userpassword.getText().toString().trim();
+    public void initialization() {
+        username = (EditText) findViewById(R.id.edittext_username);
+        userpassword = (EditText) findViewById(R.id.edittext_password);
+        userlogin = (Button) findViewById(R.id.button_login);
+        remember = (CheckBox) findViewById(R.id.box_load);
+        lostpassword = (TextView) findViewById(R.id.text_lost);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_login:
+                String name = username.getText().toString().trim();
+                String password = userpassword.getText().toString().trim();
                 RequestParams logimformation = new RequestParams();
                 AsyncHttpClient test = new AsyncHttpClient();
                 editor = pref.edit();
@@ -70,40 +82,40 @@ public class  LoginActivity extends ActionBarActivity {
                 } else {
                     editor.clear();
                 }
-                editor.commit();
+                editor.apply();
                 logimformation.add("name", name);
                 logimformation.add("password", password);
-                test.get("http://www.bug666.cn:8090/login",logimformation, new AsyncHttpResponseHandler() {
+                test.get("http://www.bug666.cn:8090/login", logimformation, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int i, Header[] headers, byte[] bytes) {
-                        ObjectMapper objectMapper=new ObjectMapper();
-                        UserResponseEmpty userResponseEmpty=new UserResponseEmpty();
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        UserResponseEmpty userResponseEmpty = new UserResponseEmpty();
                         try {
-                            userResponseEmpty=objectMapper.readValue(bytes, UserResponseEmpty.class);
+                            userResponseEmpty = objectMapper.readValue(bytes, UserResponseEmpty.class);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        if (userResponseEmpty.getCode()==1){
-                            Intent intent=new Intent();
+                        if (userResponseEmpty.getCode() == 1) {
+                            Intent intent = new Intent();
                             intent.putExtra("DataBean_data", userResponseEmpty.getDate());
-                            setResult(RESULT_OK,intent);
-                             finish();
-
-
+                            setResult(RESULT_OK, intent);
+                            finish();
                             Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else {
                             Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
-
                         }
                     }
 
                     @Override
                     public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-                        Toast.makeText(LoginActivity  .this, "网络异常，请检查网络", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(LoginActivity.this, "网络异常，请检查网络", Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
-        });
+                break;
+            case R.id.text_lost:
+                // TODO: 2017/1/1 找回密码
+                break;
+        }
+
     }
 }

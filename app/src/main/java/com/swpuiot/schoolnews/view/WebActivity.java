@@ -25,7 +25,7 @@ public class WebActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web);
         Toolbar toolbar = (Toolbar) (findViewById(R.id.toolbar));
         setSupportActionBar(toolbar);
-        if(getSupportActionBar()!=null)
+        if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progressBar = (ProgressBar) findViewById(R.id.pb_wait);
         showProgressBar(true);

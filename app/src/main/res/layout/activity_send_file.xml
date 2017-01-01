@@ -10,11 +10,11 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_sendfile"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorAccent"
         app:popupTheme="@android:style/ThemeOverlay.Material.Light"
         app:theme="@android:style/ThemeOverlay.Material.Dark"
-        app:title="提交文件" />
+        app:title="提交文件"
+        android:layout_height="48dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -121,37 +121,42 @@
             android:layout_height="wrap_content"
             android:layout_weight="3" />
     </LinearLayout>
+
     <LinearLayout
-        android:padding="12dp"
-        android:visibility="invisible"
+        android:id="@+id/ll_filename"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:visibility="invisible">
+
         <TextView
             android:id="@+id/txt_filename"
-            android:text="一个被选择的文件"
-            android:textSize="18sp"
             android:layout_width="0dp"
-            android:textColor="#646262"
+            android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:layout_height="wrap_content" />
+            android:text="一个被选择的文件"
+            android:textColor="#646262"
+            android:textSize="18sp" />
+
         <Button
             android:id="@+id/btn_removefile"
-            android:text="删除"
-            android:textColor="#646262"
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="删除"
+            android:textColor="#646262" />
     </LinearLayout>
+
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/image_sendfile"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_gravity="center"
         android:src="@drawable/ic_image_send"
-        app:roundAsCircle="true"
         android:visibility="invisible"
         app:actualImageScaleType="centerInside"
-        android:layout_gravity="center"
         app:placeholderImage="@drawable/ic_image_send"
-        android:layout_width="match_parent"
-        android:layout_height="68dp" />
+        app:roundAsCircle="true" />
 
 
 </LinearLayout>

@@ -16,14 +16,17 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        toolbar= (Toolbar) findViewById(R.id.toolbar_settinginformation);
+        initializate();
+    }
+
+    public void initializate() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar_settinginformation);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         aUser = (UserResponseEmpty.DateBean) getIntent().getSerializableExtra("user_imfo");
 
-
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         finish();
